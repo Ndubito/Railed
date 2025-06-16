@@ -1,0 +1,11 @@
+{
+    "name": "jeremiahsentomero/backend",
+    "autoload": {
+        "psr-4": {
+            "Jeremiahsentomero\\Backend\\": "src/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
