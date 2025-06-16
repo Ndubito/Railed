@@ -1,11 +1,11 @@
 <?php
-// This is a simple example for demonstration.
-// For a real application, implement session management, proper password verification,
-// and connect to a real database using prepared statements.
+session_start();
+// Ensure the path to the database connection script is correct
+require_once __DIR__ . '/../connect.php';
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     // Get form data
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
@@ -21,72 +21,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Password is required.";
     }
 
-    // If there are no errors, proceed with authentication logic
+    // --- If no validation errors, proceed with authentication ---
     if (empty($errors)) {
-        // --- Database and Authentication Logic Would Go Here ---
-        
-        // 1. Connect to your database.
-        // Example: $conn = new mysqli('localhost', 'username', 'password', 'database_name');
+        // Prepare a statement to select the user by email
+        // We now select 'username' to store in the session
+        $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        // 2. Prepare a statement to get the user by email.
-        // $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
-        // $stmt->bind_param("s", $email);
-        // $stmt->execute();
-        // $result = $stmt->get_result();
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
 
-        // 3. Check if a user was found.
-        // if ($result->num_rows === 1) {
-        //     $user = $result->fetch_assoc();
-            
-        //     // 4. Verify the password.
-        //     if (password_verify($password, $user['password'])) {
-        //         // Login successful!
-        //         // Start a session and store user info.
-        //         session_start();
-        //         $_SESSION['user_id'] = $user['id'];
-        //         $_SESSION['loggedin'] = true;
+            // Verify the submitted password against the hashed password in the database
+            if (password_verify($password, $user['password'])) {
+                // Login successful!
+                // Start a session and store user information.
+                $_SESSION['user_id'] = $user['id'];
+                // Storing username instead of first_name
+                $_SESSION['user_name'] = $user['username']; 
+                $_SESSION['loggedin'] = true;
 
-        //         // Redirect to a dashboard or home page.
-        //         header("Location: dashboard.php");
-        //         exit();
-        //     } else {
-        //         // Incorrect password
-        //         echo "<h1>Login Failed</h1><p>Invalid email or password.</p>";
-        //         echo "<p><a href='login.html'>Try again</a></p>";
-        //     }
-        // } else {
-        //     // No user found with that email
-        //     echo "<h1>Login Failed</h1><p>Invalid email or password.</p>";
-        //     echo "<p><a href='login.html'>Try again</a></p>";
-        // }
-        // $stmt->close();
-        // $conn->close();
-
-        // --- Placeholder for successful login ---
-        // This is just for demonstration since we don't have a database.
-        if ($email === "test@example.com" && $password === "password123") {
-            echo "<h1>Login Successful!</h1>";
-            echo "<p>Welcome back, " . htmlspecialchars($email) . "!</p>";
+                // Redirect to a dashboard or home page.
+                header("Location: /index.php");
+                exit();
+            } else {
+                // Passwords do not match
+                $errors[] = "Invalid email or password.";
+            }
         } else {
-            echo "<h1>Login Failed</h1>";
-            echo "<p>Invalid email or password for this demo.</p>";
-            echo "<p>Try using 'test@example.com' and 'password123'.</p>";
-            echo "<p><a href='login.html'>Try again</a></p>";
+            // No user found with that email
+            $errors[] = "Invalid email or password.";
         }
-
-    } else {
-        // Display errors
-        echo "<h1>Error</h1>";
-        echo "<ul>";
-        foreach ($errors as $error) {
-            echo "<li>" . $error . "</li>";
-        }
-        echo "</ul>";
-        echo "<p><a href='login.html'>Go back and try again</a></p>";
+        $stmt->close();
     }
+
+    // --- If there were any errors, redirect back with the errors ---
+    if (!empty($errors)) {
+        $_SESSION['login_errors'] = $errors;
+        // Redirect back to the previous page (the one with the login form)
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
+
 } else {
-    // If the form wasn't submitted, redirect back to the login page
-    header("Location: login.html");
+    // If the script was accessed without a POST request, redirect away
+    header("Location: /index.php");
     exit();
 }
 ?>

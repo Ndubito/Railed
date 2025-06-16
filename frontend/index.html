@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Railed: Online Marketplace to Buy Fashion</title>
+  <link rel="icon" href="../assets/images/logo.png" type="image/png" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <!-- Mobile left icons -->
+      <div class="mobile-icons">
+        <svg class="mobile-icon" viewBox="0 0 24 24">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+        </svg>
+        <svg class="mobile-icon" viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+        </svg>
+      </div>
+
+      <a href="#" class="logo">RAILED</a>
+
+      <!-- Desktop search -->
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search for anything" />
+      </div>
+
+      <!-- Desktop navigation -->
+      <nav class="nav-links">
+        <a href="#" class="nav-link" onclick="openModal('loginModal')">Login</a>
+        <a href="#" class="nav-link" onclick="openModal('registerModal')">Register</a>
+        <a href="#" class="sell-btn">Sell</a>
+      </nav>
+
+      <!-- Mobile right icons -->
+      <div class="mobile-icons">
+        <a href="#" class="nav-link" style="font-size: 12px; margin-right: 10px" onclick="openModal('loginModal')">SIGN
+          IN</a>
+        <a href="#" class="nav-link" style="font-size: 12px; margin-right: 10px"
+          onclick="openModal('registerModal')">SIGN UP</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navigation -->
+  <nav class="main-nav">
+    <div class="main-nav-content">
+      <div class="nav-category"><a href="#">Designers</a></div>
+      <div class="nav-category"><a href="#">Menswear</a></div>
+      <div class="nav-category"><a href="#">Womenswear</a></div>
+      <div class="nav-category"><a href="#">Sale</a></div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="hero">
+    <div class="hero-content">
+      <h1>The Future of Fashion is Here</h1>
+      <p>Buy, sell, and discover authenticated, pre-owned luxury fashion.</p>
+      <div class="cta-buttons">
+        <a href="#" class="cta-btn cta-primary">Shop Menswear</a>
+        <a href="#" class="cta-btn cta-secondary">Shop Womenswear</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Featured Brands -->
+  <section class="featured-brands">
+    <div class="section-content">
+      <h2 class="section-title">Featured Brands</h2>
+      <div class="brands-grid">
+        <div class="brand-card">
+          <div class="brand-name">GUCCI</div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">LOUIS VUITTON</div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">PRADA</div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">BALENCIAGA</div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">OFF-WHITE</div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">SUPREME</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Items -->
+  <section class="trending-items">
+    <div class="section-content">
+      <h2 class="section-title">Trending Now</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image">👕</div>
+          <div class="product-info">
+            <div class="product-brand">SUPREME</div>
+            <div class="product-title">Box Logo Hoodie</div>
+            <div class="product-price">$450</div>
+            <div class="product-size">Size: L</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">👜</div>
+          <div class="product-info">
+            <div class="product-brand">LOUIS VUITTON</div>
+            <div class="product-title">Neverfull MM</div>
+            <div class="product-price">$1,200</div>
+            <div class="product-size">Condition: 9/10</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">👟</div>
+          <div class="product-info">
+            <div class="product-brand">NIKE</div>
+            <div class="product-title">Air Jordan 1 Retro High</div>
+            <div class="product-price">$180</div>
+            <div class="product-size">Size: 10</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🧥</div>
+          <div class="product-info">
+            <div class="product-brand">OFF-WHITE</div>
+            <div class="product-title">Industrial Belt</div>
+            <div class="product-price">$220</div>
+            <div class="product-size">Length: 200cm</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">👗</div>
+          <div class="product-info">
+            <div class="product-brand">CHANEL</div>
+            <div class="product-title">Classic Flap Bag</div>
+            <div class="product-price">$4,500</div>
+            <div class="product-size">Size: Medium</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">⌚</div>
+          <div class="product-info">
+            <div class="product-brand">ROLEX</div>
+            <div class="product-title">Submariner Date</div>
+            <div class="product-price">$8,500</div>
+            <div class="product-size">Condition: Excellent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Shop</h3>
+          <ul class="footer-links">
+            <li><a href="#">Menswear</a></li>
+            <li><a href="#">Womenswear</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Company</h3>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 RAILED. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container">
+      <button class="close-btn" onclick="closeModal('loginModal')">
+        &times;
+      </button>
+      <div class="popup-form-section">
+        <h1>Welcome Back!</h1>
+        <p class="slogan">Please enter your details to log in.</p>
+        
+        <!-- Corrected: Using a relative path for the form action -->
+        <form action="../backend/auth/login.php" method="post">
+          <div class="form-row">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" name="email" class="custom-input" required />
+          </div>
+          <div class="form-row">
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="password" class="custom-input" required />
+          </div>
+          <a href="#" class="forgot-password">Forgot Password?</a>
+          <button type="submit" class="custom-btn">Login</button>
+        </form>
+
+        <div class="form-footer">
+          <p>
+            Don't have an account?
+            <a onclick="switchModal('loginModal', 'registerModal')">Register here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div id="registerModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container">
+      <button class="close-btn" onclick="closeModal('registerModal')">
+        &times;
+      </button>
+      <div class="popup-form-section">
+        <h1>Create Your Account</h1>
+        <p class="slogan">Join our community and start trading.</p>
+
+        <!-- Corrected: Using a relative path for the form action -->
+        <form action="../backend/auth/register.php" method="post">
+          
+          <div class="form-row">
+            <label for="register-username">Username:</label>
+            <input type="text" id="register-username" name="username" class="custom-input" required />
+
+          <div class="form-row">
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" name="email" class="custom-input" required />
+          </div>
+
+          <div class="input-group">
+            <div class="form-row">
+              <label for="register-password">Password:</label>
+              <input type="password" name="password" id="register-password" class="custom-input" required />
+            </div>
+            <div class="form-row">
+              <label for="register-password-confirm">Confirm Password:</label>
+              <input type="password" name="password_confirm" id="register-password-confirm" class="custom-input"
+                required />
+            </div>
+          </div>
+
+          <label class="custom-checkbox">
+            <input type="checkbox" name="terms" required />
+            I have read, understood and accept the terms and conditions.
+          </label>
+
+          <button type="submit" class="custom-btn">Register</button>
+        </form>
+
+        <div class="form-footer">
+          <p>
+            Already have an account?
+            <a onclick="switchModal('registerModal', 'loginModal')">Login here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.classList.remove('active');
+      modal.style.display = 'none';
+    });
+    document.body.style.overflow = 'auto';
+  });
+  function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.remove('active');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+}
+
+</script>
+
+</body>
+
+</html>
