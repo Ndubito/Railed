@@ -1,12 +1,13 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
     email VARCHAR(100) UNIQUE,
     password VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS  products (
     id INT PRIMARY KEY AUTO_INCREMENT,
     seller_id INT,
     name VARCHAR(100),
@@ -19,7 +20,7 @@ CREATE TABLE products (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (seller_id) REFERENCES users(id)
 );
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS  orders (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     product_id INT,
@@ -31,7 +32,7 @@ CREATE TABLE orders (
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
-CREATE TABLE ORDER_ITEMS (
+CREATE TABLE IF NOT EXISTS  ORDER_ITEMS (
     id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     product_id INT,

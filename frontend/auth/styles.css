@@ -1,0 +1,205 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Root Variables */
+:root {
+    --main-background-color: #f0f2f5;
+    --container-background: #ffffff;
+    --primary-text-color: #333333;
+    --secondary-text-color: #666666;
+    --input-border-color: #cccccc;
+    --button-background-color: #3A3A3A;
+    --button-hover-color: #007bff;
+    --error-color: #d93025;
+    --overlay-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex; /* Shown when active */
+}
+
+/* Modal Container */
+.modal-container {
+    background-color: var(--container-background);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--secondary-text-color);
+    z-index: 10;
+}
+
+.close-btn:hover {
+    color: var(--primary-text-color);
+}
+
+/* Form Section */
+.popup-form-section {
+    padding: 40px 35px;
+    padding-top: 60px;
+    text-align: center;
+}
+
+.popup-form-section h1 {
+    font-family: 'DM Serif Text', serif;
+    font-size: 2rem;
+    color: var(--primary-text-color);
+    margin-bottom: 10px;
+}
+
+.slogan {
+    color: var(--secondary-text-color);
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-row {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background: #f9f9f9;
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: var(--button-hover-color);
+    background: #fff;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-text-color);
+    font-weight: 600;
+}
+
+.forgot-password {
+    align-self: flex-end;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    color: var(--button-hover-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+}
+
+.custom-checkbox input {
+    margin-right: 10px;
+}
+
+.custom-btn {
+    width: 100%;
+    background-color: var(--button-background-color);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.custom-btn:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Form Footer */
+.form-footer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    text-align: center;
+}
+
+.form-footer a {
+    color: var(--button-hover-color);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}

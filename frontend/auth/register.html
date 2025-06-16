@@ -3,58 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="icon" href="images/logo.png">
 </head>
 <body>
-    <div class="container">
-        <div class="form-section">
-            <img src="/images/logo.png" alt="Company Logo" class="logo">
-            <h1>Create your account</h1>
-            <p class="slogan">Fill the form below to create an account</p>
+    <!-- Main Page Content -->
+    <div class="main-content">
+        <h1>Welcome to Our Platform</h1>
+        <p>Join thousands of users who trust our platform for their needs.</p>
+        
+        <div class="auth-buttons">
+            <button class="auth-btn" onclick="openModal('loginModal')">Login</button>
+            <button class="auth-btn" onclick="openModal('registerModal')">Register</button>
+        </div>
+    </div>
 
-            <form action="register.php" method="post">
-                <div class="input-group">
-                    <div class="form-row">
-                        <label for="fname">First Name:</label>
-                        <input type="text" id="fname" name="fname" class="custom-input" required>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="close-btn" onclick="closeModal('loginModal')">&times;</button>
+            <div class="popup-form-section">
+                <h1>Welcome Back!</h1>
+                <p class="slogan">Please enter your details to log in.</p>
+
+                <form action="/backend/auth/login.php" method="post">
+                    <div class="form-row full-width">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" name="email" class="custom-input" required />
                     </div>
-                    <div class="form-row">
-                        <label for="lname">Last Name:</label>
-                        <input type="text" id="lname" name="lname" class="custom-input" required>
+
+                    <div class="form-row full-width" style="margin-top: 15px">
+                        <label for="login-password">Password:</label>
+                        <input type="password" name="password" id="login-password" class="custom-input" required />
                     </div>
+
+                    <button type="submit" class="custom-btn" style="margin-top: 20px;">
+                        Login
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p>
+                        Don't have an account? <a onclick="switchModal('loginModal', 'registerModal')">Register here</a>
+                    </p>
                 </div>
-
-                <div class="form-row full-width">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" class="custom-input" required>
-                </div>
-
-                <div class="input-group" style="margin-top: 15px;">
-                    <div class="form-row">
-                        <label for="password">Password:</label>
-                        <input type="password" name="password" id="password" class="custom-input" required>
-                    </div>
-                    <div class="form-row">
-                        <label for="password_confirm">Confirm Password:</label>
-                        <input type="password" name="password_confirm" id="password_confirm" class="custom-input" required>
-                    </div>
-                </div>
-
-                <label class="custom-checkbox">
-                    I have read, understood and accept the terms and conditions.
-                    <input type="checkbox" name="terms" required>
-                    <span class="checkmark"></span>
-                </label>
-
-                <button type="submit" class="custom-btn">Register</button>
-            </form>
-            
-            <div class="form-footer">
-                <p>Already have an account? <a href="login.html">Login here</a></p>
             </div>
         </div>
     </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="close-btn" onclick="closeModal('registerModal')">&times;</button>
+            <div class="popup-form-section">
+                <h1>Create Your Account</h1>
+                <p class="slogan">Fill the form below to create an account</p>
+
+                <form action="/backend/auth/register.php" method="post">
+                    <div class="input-group">
+                        <div class="form-row">
+                            <label for="register-fname">First Name:</label>
+                            <input type="text" id="register-fname" name="fname" class="custom-input" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="register-lname">Last Name:</label>
+                            <input type="text" id="register-lname" name="lname" class="custom-input" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row full-width">
+                        <label for="register-email">Email:</label>
+                        <input type="email" id="register-email" name="email" class="custom-input" required />
+                    </div>
+
+                    <div class="input-group" style="margin-top: 15px">
+                        <div class="form-row">
+                            <label for="register-password">Password:</label>
+                            <input type="password" name="password" id="register-password" class="custom-input" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="register-password-confirm">Confirm Password:</label>
+                            <input type="password" name="password_confirm" id="register-password-confirm" class="custom-input" required />
+                        </div>
+                    </div>
+
+                    <label class="custom-checkbox">
+                        I have read, understood and accept the terms and conditions.
+                        <input type="checkbox" name="terms" required />
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <button type="submit" class="custom-btn">Register</button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Already have an account? <a onclick="switchModal('registerModal', 'loginModal')">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/main.js"> </script>
 </body>
 </html>

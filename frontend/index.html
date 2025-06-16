@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Railed: Online Marketplace to Buy Fashion</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="/frontend/auth/styles.css" />
+    <link rel="icon" href="images/logo.png" />
+    <style>
+      /* Keeping this inline style as it was in the original file */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-top: 40px;
+        padding: 6rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <!-- Mobile left icons -->
+        <div class="mobile-icons">
+          <svg class="mobile-icon" viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+          <svg class="mobile-icon" viewBox="0 0 24 24">
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            />
+          </svg>
+        </div>
+
+        <a href="#" class="logo">RAILED</a>
+
+        <!-- Desktop search -->
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search for anything"
+          />
+        </div>
+
+        <!-- Desktop navigation -->
+        <nav class="nav-links">
+          <!-- Updated links to open modals -->
+          <a href="#" class="nav-link" onclick="openModal('loginModal')">Login</a>
+          <a href="#" class="nav-link" onclick="openModal('registerModal')">Register</a>
+          <a href="#" class="sell-btn">Sell</a>
+        </nav>
+
+        <!-- Mobile right icons -->
+        <div class="mobile-icons">
+           <!-- Updated links to open modals -->
+          <a href="#" class="nav-link" style="font-size: 12px; margin-right: 10px" onclick="openModal('loginModal')">SIGN IN</a>
+          <a href="#" class="nav-link" style="font-size: 12px; margin-right: 10px" onclick="openModal('registerModal')">SIGN UP</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <div class="nav-category"><a href="#">Designers</a></div>
+            <div class="nav-category"><a href="#">Menswear</a></div>
+            <div class="nav-category"><a href="#">Womenswear</a></div>
+            <div class="nav-category"><a href="#">Sale</a></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="hero-content">
+            <h1>The Future of Fashion is Here</h1>
+            <p>Buy, sell, and discover authenticated, pre-owned luxury fashion.</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn primary">Shop Menswear</a>
+                <a href="#" class="cta-btn secondary">Shop Womenswear</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Page Content (Example) -->
+    <div class="product-grid">
+      <!-- Your product cards would go here -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <!-- Your footer content would go here -->
+    </footer>
+
+    <!-- MODAL HTML STARTS HERE -->
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="close-btn" onclick="closeModal('loginModal')">&times;</button>
+            <div class="popup-form-section">
+                <h1>Welcome Back!</h1>
+                <p class="slogan">Please enter your details to log in.</p>
+
+                <form action="/backend/auth/login.php" method="post">
+                    <div class="form-row full-width">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" name="email" class="custom-input" required />
+                    </div>
+                    <div class="form-row full-width" style="margin-top: 15px;">
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" name="password" class="custom-input" required />
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <button type="submit" class="custom-btn">Login</button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Don't have an account? <a onclick="switchModal('loginModal', 'registerModal')">Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="close-btn" onclick="closeModal('registerModal')">&times;</button>
+            <div class="popup-form-section">
+                <h1>Create Your Account</h1>
+                <p class="slogan">Join our community and start trading.</p>
+
+                <form action="/backend/auth/register.php" method="post">
+                    <div class="form-row full-width">
+                        <label for="register-email">Email:</label>
+                        <input type="email" id="register-email" name="email" class="custom-input" required />
+                    </div>
+
+                    <div class="input-group" style="margin-top: 15px;">
+                        <div class="form-row">
+                            <label for="register-password">Password:</label>
+                            <input type="password" name="password" id="register-password" class="custom-input" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="register-password-confirm">Confirm Password:</label>
+                            <input type="password" name="password_confirm" id="register-password-confirm" class="custom-input" required />
+                        </div>
+                    </div>
+
+                    <label class="custom-checkbox">
+                        I have read, understood and accept the terms and conditions.
+                        <input type="checkbox" name="terms" required />
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <button type="submit" class="custom-btn">Register</button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Already have an account? <a onclick="switchModal('registerModal', 'loginModal')">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/frontend/auth/main.js"></script>
+
+  </body>
+</html>
