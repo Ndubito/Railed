@@ -377,9 +377,11 @@
          font-size: 14px;
      }
 
-     /* Modal Styles */
+     /* Modal Styles - UPDATED */
      .modal-overlay {
-         display: none;
+         display: flex; /* Keep flex for centering */
+         justify-content: center;
+         align-items: center;
          position: fixed;
          top: 0;
          left: 0;
@@ -387,12 +389,18 @@
          height: 100%;
          background-color: rgba(0, 0, 0, 0.5);
          z-index: 2000;
-         justify-content: center;
-         align-items: center;
+         
+         /* New properties for smooth transition */
+         opacity: 0;
+         visibility: hidden;
+         transition: opacity 0.3s ease, visibility 0s 0.3s;
      }
 
      .modal-overlay.active {
-         display: flex;
+         /* Make modal visible */
+         opacity: 1;
+         visibility: visible;
+         transition: opacity 0.3s ease;
      }
 
      .modal-container {
@@ -402,7 +410,16 @@
          border-radius: 8px;
          position: relative;
          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+         /* Add a transition for a subtle pop effect */
+         transform: scale(0.95);
+         transition: transform 0.3s ease;
      }
+
+     /* Animate the container when the overlay is active */
+    .modal-overlay.active .modal-container {
+        transform: scale(1);
+    }
+
 
      .close-btn {
          position: absolute;

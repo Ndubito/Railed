@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Railed: Online Marketplace to Buy Fashion</title>
-  <link rel="icon" href="/assets/images/logo.png" type="image/png" />
+  <link rel="icon" href="../assets/images/logo.png" type="image/png" />
   <link rel="stylesheet" href="index.css" />
 </head>
 
@@ -207,7 +207,7 @@
   </footer>
 
   <!-- Login Modal -->
-  <div id="loginModal" class="modal-overlay">
+  <div id="loginModal" class="modal-overlay" style="display: none;">
     <div class="modal-container">
       <button class="close-btn" onclick="closeModal('loginModal')">
         &times;
@@ -215,8 +215,9 @@
       <div class="popup-form-section">
         <h1>Welcome Back!</h1>
         <p class="slogan">Please enter your details to log in.</p>
-
-        <form action="/backend/auth/login.php" method="post">
+        
+        <!-- Corrected: Using a relative path for the form action -->
+        <form action="../backend/auth/login.php" method="post">
           <div class="form-row">
             <label for="login-email">Email:</label>
             <input type="email" id="login-email" name="email" class="custom-input" required />
@@ -240,7 +241,7 @@
   </div>
 
   <!-- Register Modal -->
-  <div id="registerModal" class="modal-overlay">
+  <div id="registerModal" class="modal-overlay" style="display: none;">
     <div class="modal-container">
       <button class="close-btn" onclick="closeModal('registerModal')">
         &times;
@@ -249,7 +250,13 @@
         <h1>Create Your Account</h1>
         <p class="slogan">Join our community and start trading.</p>
 
-        <form action="/backend/auth/register.php" method="post">
+        <!-- Corrected: Using a relative path for the form action -->
+        <form action="../backend/auth/register.php" method="post">
+          
+          <div class="form-row">
+            <label for="register-username">Username:</label>
+            <input type="text" id="register-username" name="username" class="custom-input" required />
+
           <div class="form-row">
             <label for="register-email">Email:</label>
             <input type="email" id="register-email" name="email" class="custom-input" required />
@@ -285,6 +292,35 @@
     </div>
   </div>
   <script src="main.js"></script>
+
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.classList.remove('active');
+      modal.style.display = 'none';
+    });
+    document.body.style.overflow = 'auto';
+  });
+  function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.remove('active');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+}
+
+</script>
+
 </body>
 
 </html>
