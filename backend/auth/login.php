@@ -1,10 +1,7 @@
 <?php
 session_start();
-require_once __DIR__ . '/../db/connect.php';
-
-// This is a simple example for demonstration.
-// For a real application, implement session management, proper password verification,
-// and connect to a real database using prepared statements.
+// Ensure the path to the database connection script is correct
+require_once __DIR__ . '/../connect.php';
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,9 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Password is required.";
     }
 
-    // If there are no errors, proceed with authentication logic
+    // --- If no validation errors, proceed with authentication ---
     if (empty($errors)) {
-        $stmt = $conn->prepare("SELECT id, password, first_name FROM users WHERE email = ?");
+        // Prepare a statement to select the user by email
+        // We now select 'username' to store in the session
+        $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -34,33 +33,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
 
-            // 4. Verify the password.
+            // Verify the submitted password against the hashed password in the database
             if (password_verify($password, $user['password'])) {
                 // Login successful!
-                // Start a session and store user info.
+                // Start a session and store user information.
                 $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['first_name'];
+                // Storing username instead of first_name
+                $_SESSION['user_name'] = $user['username']; 
                 $_SESSION['loggedin'] = true;
 
                 // Redirect to a dashboard or home page.
                 header("Location: /index.php");
                 exit();
             } else {
+                // Passwords do not match
                 $errors[] = "Invalid email or password.";
             }
         } else {
+            // No user found with that email
             $errors[] = "Invalid email or password.";
         }
+        $stmt->close();
     }
 
+    // --- If there were any errors, redirect back with the errors ---
     if (!empty($errors)) {
         $_SESSION['login_errors'] = $errors;
-        header("Location: /frontend/auth/login.html");
+        // Redirect back to the previous page (the one with the login form)
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         exit();
     }
+
 } else {
-    // If the form wasn't submitted, redirect back to the login page
-    header("Location: login.html");
+    // If the script was accessed without a POST request, redirect away
+    header("Location: /index.php");
     exit();
 }
 ?>

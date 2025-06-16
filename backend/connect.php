@@ -1,19 +1,21 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
-$host = getenv('DB_HOST');
-$user = getenv('DB_USER');
-$password = getenv('DB_PASSWORD');
-$database = getenv('DB_NAME');
 
-$conn = new mysqli($host, $user, $password, $database);
+$Db_Server = $_ENV['DB_SERVER'];
+$Db_User = $_ENV['DB_USER'];
+$Db_Password = $_ENV['DB_PASSWORD'];
+$Db_Name = $_ENV['DB_NAME'];
+
+$conn = new mysqli($Db_Server, $Db_User, $Db_Password, $Db_Name);
+
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}else{
-    echo "Connected successfully to the database.";
+    die("Connection to the database failed: " . $conn->connect_error);
+} else {
+    echo "Connection to the database was successful.";
 }
 
 ?>
