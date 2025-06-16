@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Registration was successful. Set a success message and redirect to login page.
             $_SESSION['register_success'] = "Registration successful! You can now log in.";
             // Redirect to your main index or login page
-            header("Location: /index.php"); // Or wherever your login form is
+            header("Location: /index.html"); // Or wherever your login form is
             exit();
         } else {
             $errors[] = "Registration failed due to a server error. Please try again.";
